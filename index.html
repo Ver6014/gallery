@@ -1,0 +1,52 @@
+# Image Gallery
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 10px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+
+        function fetchImages() {
+            fetch('path/to/your/image/folder')
+                .then(response => response.json())
+                .then(images => {
+                    gallery.innerHTML = '';
+                    images.forEach(image => {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = `path/to/your/image/folder/${image}`;
+                        gallery.appendChild(imgElement);
+                    });
+                });
+        }
+
+        setInterval(fetchImages, 5000); // Update every 5 seconds
+        fetchImages(); // Initial fetch
+    </script>
+</body>
+</html>
