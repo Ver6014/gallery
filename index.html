@@ -1,52 +1,80 @@
-# Image Gallery
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
-    <style>
+ <style>
         body {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            background-color: #f0f0f0;
+		transform-origin:preserve-3d;
+  		perspective:500px;
+            background-color: #ff77ff;
+            color: #00ffff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+	
+	
+
+		
         }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            padding: 10px;
+        h1 {
+            font-size: 4em;
+            text-shadow: 2px 2px 0 #000;
         }
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
+        p {
+            font-size: 1.5em;
+            text-shadow: 1px 1px 0 #000;
+        }
+	.box{
+ 		 transition:width .5s ease,height .5s ease;
+	}
+	.box:nth-child(odd){
+ 		 width:100px;
+ 		 height:100px;
+  		background:linear-gradient(#ff71ce,#ff71ce);
+  		&:hover{
+    		 width:130px;
+ 		 height:130px;
+ 		 }
+		 border: 5px solid #00ffff;
+            border-radius: 15px;
+}
+	.box:nth-child(even){
+ 		 width:100px;
+ 		 height:100px;
+  		background:linear-gradient(#ff71ce,#ff71ce);
+ 		 &:hover{
+     		width:130px;
+  		height:130px;
+  }
+		 border: 5px solid #00ffff;
+            border-radius: 15px;
+}
+
+
+        .container {
+            margin-top: 50px;
+        }
+        .vaporwave-image {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            border: 5px solid #00ffff;
+            border-radius: 15px;
         }
     </style>
-</head>
-<body>
-    <div class="gallery" id="gallery"></div>
 
-    <script>
-        const gallery = document.getElementById('gallery');
+    <img src="path to image" alt="image will be here" class="vaporwave-image">
 
-        function fetchImages() {
-            fetch('path/to/your/image/folder')
-                .then(response => response.json())
-                .then(images => {
-                    gallery.innerHTML = '';
-                    images.forEach(image => {
-                        const imgElement = document.createElement('img');
-                        imgElement.src = `path/to/your/image/folder/${image}`;
-                        gallery.appendChild(imgElement);
-                    });
-                });
-        }
+<video id="myVideo" width="320" height="176" controls>
+  <source src="mov_bbb.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
 
-        setInterval(fetchImages, 5000); // Update every 5 seconds
-        fetchImages(); // Initial fetch
-    </script>
-</body>
+<script>
+let vid = document.getElementById("myVideo");
+  vid.loop = true;
+  vid.load(); 
+</script> 
+
+
+</body> 
 </html>
